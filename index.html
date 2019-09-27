@@ -234,25 +234,28 @@
         crossorigin="anonymous"></script>
 
     <script>
+        x = document.getElementById("choices").value;
+
         function myFunction() {
             var x, text;
 
-            // Get the value of the input field with id="numb"
-            x = document.getElementById("choices").value;
-
-            // If x is Not a Number or less than one or greater than 10
             if (isNaN(x) || x < 6 || x > 15) {
                 text = "Informe um número entre 6 e 15";
             } else {
                 sorteia();
             }
             document.getElementById("demo").innerHTML = text;
-
-
         }
 
+
+        let numbers = [];
+
         function sorteia() {
-            console.log(Math.floor(Math.random() * 60) + 1);
+
+            for (var i = 0; i < x; i++) {
+                console.log(Math.floor(Math.random() * 60) + 1);
+            }
+
         }
     </script>
 </body>
