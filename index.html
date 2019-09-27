@@ -223,6 +223,8 @@
                 60
             </div>
         </div>
+        <hr>
+        <div id="bet"></div>
     </div>
 
     <!-- JavaScript (Opcional) -->
@@ -238,7 +240,6 @@
         crossorigin="anonymous"></script>
 
     <script>
-
 
         function myFunction() {
             var x, text;
@@ -269,7 +270,6 @@
 
                 if (!numbers.includes(n)) {
                     numbers.push(n);
-                    console.log(n);
                     i++;
                 }
             }
@@ -277,6 +277,8 @@
             for (let number of numbers) {
                 document.getElementById(number).classList.add('choices');
             }
+
+            bet(x);
         }
 
         function clear() {
@@ -285,6 +287,16 @@
                 document.getElementById(i).classList.remove('choices');
             }
         }
+
+        function bet(x) {
+
+            var bet = 3.5 * (fac(x) / (fac(6) * fac(x - 6)));
+
+            document.getElementById("bet").innerHTML = 'Valor da aposta: ' + bet.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+        }
+
+        function fac(n) { return n < 2 ? 1 : n * fac(n - 1) };
     </script>
 </body>
 
