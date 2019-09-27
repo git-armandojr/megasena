@@ -17,8 +17,12 @@
     <div class="container">
         <h1>Mega Sena</h1>
         <hr>
-        <input type="text" id="choices" name="choices" required>
-        <button type="button" class="btn btn-primary" onclick="myFunction()">Jogar</button>
+        <form>
+            <div class="form-group">
+                <input type="text" id="choices" name="choices" required>
+                <button type="button" class="btn btn-primary btn-sm" onclick="myFunction()">Jogar</button>
+            </div>
+        </form>
         <p id="demo"></p>
         <hr>
         <!-- 1 linha -->
@@ -234,28 +238,52 @@
         crossorigin="anonymous"></script>
 
     <script>
-        x = document.getElementById("choices").value;
+
 
         function myFunction() {
             var x, text;
+            x = document.getElementById("choices").value;
 
             if (isNaN(x) || x < 6 || x > 15) {
                 text = "Informe um número entre 6 e 15";
             } else {
+                text = "Seu jogo:";
                 sorteia();
             }
             document.getElementById("demo").innerHTML = text;
         }
 
-
-        let numbers = [];
-
         function sorteia() {
+            clear();
 
-            for (var i = 0; i < x; i++) {
-                console.log(Math.floor(Math.random() * 60) + 1);
+            let numbers = [];
+
+            var x;
+            x = document.getElementById("choices").value;
+
+            i = 0;
+
+
+            while (i < x) {
+                let n = Math.floor(Math.random() * 60) + 1;
+
+                if (!numbers.includes(n)) {
+                    numbers.push(n);
+                    console.log(n);
+                    i++;
+                }
             }
 
+            for (let number of numbers) {
+                document.getElementById(number).classList.add('choices');
+            }
+        }
+
+        function clear() {
+            var i;
+            for (i = 1; i < 61; i++) {
+                document.getElementById(i).classList.remove('choices');
+            }
         }
     </script>
 </body>
